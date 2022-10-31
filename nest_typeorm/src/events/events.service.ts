@@ -163,6 +163,9 @@ export class EventsService {
      */
   @Get('futureevents')
   async getFutureEventWithWorkshops() {
-    throw new Error('TODO task 2');
+    return this.eventRepository.createQueryBuilder("event")
+      .leftJoinAndSelect("event.workshops", "workshop")
+      .where("workshop.start >= :currentTime", { currentTime: new Date() })
+      .getMany();
   }
 }
