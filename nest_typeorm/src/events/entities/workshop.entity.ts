@@ -12,12 +12,12 @@ export class Workshop {
   @Column({ type: 'datetime' })
   end: string;
 
-  @Column({ type: 'integer', default: null })
-  eventId: number;
-
   @Column()
   name: string;
 
   @Column({ type: 'datetime' })
   createdAt: string;
+
+  @ManyToOne(() => Event, (event) => event.workshops)
+  event: Event;
 }
