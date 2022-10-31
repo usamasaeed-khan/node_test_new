@@ -2,6 +2,8 @@ import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'ty
 
 @Entity()
 export class MenuItem {
+  result: MenuItem;
+  [x: string]: MenuItem;
   @PrimaryGeneratedColumn()
   id: number;
 
