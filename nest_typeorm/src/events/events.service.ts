@@ -92,7 +92,10 @@ export class EventsService {
      */
 
   async getEventsWithWorkshops() {
-    return this.eventRepository.find({ relations: ['workshops'] });
+    return this.eventRepository.createQueryBuilder('event')
+    .leftJoinAndSelect('event.workshops', 'workshop')
+    .orderBy('workshop.id', 'ASC')
+    .getMany();
   }
 
   /* TODO: complete getFutureEventWithWorkshops so that it returns events with workshops, that have not yet started
