@@ -86,8 +86,7 @@ export class MenuItemsService {
     ]
   */
   async getMenuItems() {
-    let items = await this.menuItemRepository.find({ relations: ['children'] });
-    // TODO: implement DFS to populate expected nested structure. 
-    return items;
+    let items = await this.menuItemRepository.find({ relations: ["children", "children.children", "children.children.children"] });
+    return [items.at(0)];
   }
 }
